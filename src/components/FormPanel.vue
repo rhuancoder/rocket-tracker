@@ -7,15 +7,15 @@
       <div class="column">
         <div class="is-flex is-align-items-center is-justify-content-space-between">
           <section>
-            <strong>00:00:00</strong>
+            <strong>{{ elapsedTime }}</strong>
           </section>
-          <button class="button">
+          <button class="button" @click="start">
             <span class="icon">
               <i class="fas fa-play"></i>
             </span>
             <span>play</span>
           </button>
-          <button class="button">
+          <button class="button" @click="finish">
             <span class="icon">
               <i class="fas fa-stop"></i>
             </span>
@@ -28,9 +28,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from "vue"
 
-export default defineComponent({ name: "FormPanel" });
+export default defineComponent({
+  name: "FormPanel",
+  data() {
+    return {
+      timeInSeconds: 0,
+      timer: 0
+    }
+  },
+  computed: {
+    elapsedTime() : string {
+      return new Date(this.timeInSeconds * 1000).toISOString().substring(11, 19)
+    }
+  },
+  methods: {
+    start() {
+      this.timer = setInterval(() => {
+        this.timeInSeconds += 1
+      }, 1000)
+    },
+    finish() {
+      clearInterval(this.timer)
+    }
+  }
+})
 </script>
 
 <style></style>

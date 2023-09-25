@@ -7,9 +7,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from "vue"
 
-export default defineComponent({ name: "SideBar" });
+export default defineComponent({ name: "SideBar" })
 </script>
 
 <style scoped="scoped">
