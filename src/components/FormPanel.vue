@@ -6,9 +6,7 @@
       </div>
       <div class="column">
         <div class="is-flex is-align-items-center is-justify-content-space-between">
-          <section>
-            <strong>{{ elapsedTime }}</strong>
-          </section>
+          <TimerViewer :timeInSeconds="timeInSeconds" />
           <button class="button" @click="start">
             <span class="icon">
               <i class="fas fa-play"></i>
@@ -29,30 +27,27 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
+import TimerViewer from "./TimerViewer.vue"
 
 export default defineComponent({
-  name: "FormPanel",
-  data() {
-    return {
-      timeInSeconds: 0,
-      timer: 0
-    }
-  },
-  computed: {
-    elapsedTime() : string {
-      return new Date(this.timeInSeconds * 1000).toISOString().substring(11, 19)
-    }
-  },
-  methods: {
-    start() {
-      this.timer = setInterval(() => {
-        this.timeInSeconds += 1
-      }, 1000)
+    name: "FormPanel",
+    components: { TimerViewer },
+    data() {
+        return {
+            timeInSeconds: 0,
+            timer: 0
+        };
     },
-    finish() {
-      clearInterval(this.timer)
+    methods: {
+        start() {
+            this.timer = setInterval(() => {
+                this.timeInSeconds += 1;
+            }, 1000);
+        },
+        finish() {
+            clearInterval(this.timer);
+        }
     }
-  }
 })
 </script>
 
