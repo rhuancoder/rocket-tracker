@@ -5,21 +5,7 @@
         <input type="text" class="input" placeholder="What task do you want to start?" />
       </div>
       <div class="column">
-        <div class="is-flex is-align-items-center is-justify-content-space-between">
-          <TimerViewer :timeInSeconds="timeInSeconds" />
-          <button class="button" @click="start">
-            <span class="icon">
-              <i class="fas fa-play"></i>
-            </span>
-            <span>play</span>
-          </button>
-          <button class="button" @click="finish">
-            <span class="icon">
-              <i class="fas fa-stop"></i>
-            </span>
-            <span>stop</span>
-          </button>
-        </div>
+        <TimerHandler />
       </div>
     </div>
   </div>
@@ -27,27 +13,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue"
-import TimerViewer from "./TimerViewer.vue"
+import TimerHandler from "./TimerHandler.vue"
 
 export default defineComponent({
-    name: "FormPanel",
-    components: { TimerViewer },
-    data() {
-        return {
-            timeInSeconds: 0,
-            timer: 0
-        };
-    },
-    methods: {
-        start() {
-            this.timer = setInterval(() => {
-                this.timeInSeconds += 1;
-            }, 1000);
-        },
-        finish() {
-            clearInterval(this.timer);
-        }
-    }
+  name: "FormPanel",
+  components: { TimerHandler }
 })
 </script>
 
