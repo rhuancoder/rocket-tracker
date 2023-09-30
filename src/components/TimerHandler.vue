@@ -22,6 +22,7 @@ import TimerViewer from "./TimerViewer.vue"
 
 export default defineComponent({
   name: "TimerHandler",
+  emits: ['onTimerFinishes'],
   components: { TimerViewer },
   data() {
     return {
@@ -40,6 +41,8 @@ export default defineComponent({
     finish() {
       this.isTimerRunning = false
       clearInterval(this.timer)
+      this.$emit('onTimerFinishes', this.timeInSeconds)
+      this.timeInSeconds = 0
     }
   }
 })
