@@ -1,29 +1,20 @@
 <template>
-  <div class="is-flex is-align-items-center is-justify-content-space-between">
-    <TimerViewer :timeInSeconds="timeInSeconds" />
-    <button class="button" @click="start" :disabled="isTimerRunning">
-      <span class="icon">
-        <i class="fas fa-play"></i>
-      </span>
-      <span>play</span>
-    </button>
-    <button class="button" @click="finish" :disabled="!isTimerRunning">
-      <span class="icon">
-        <i class="fas fa-stop"></i>
-      </span>
-      <span>stop</span>
-    </button>
-  </div>
+  <section class="is-flex is-align-items-center is-justify-content-space-between">
+    <TimerViewer :timeInSeconds="timeInSeconds"/>
+    <ButtonModel @clicked="start" icon="fas fa-play" text="play" :disabled="isTimerRunning" />
+    <ButtonModel @clicked="finish" icon="fas fa-stop" text="stop" :disabled="!isTimerRunning" />
+  </section>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue"
 import TimerViewer from "./TimerViewer.vue"
+import ButtonModel from "./ButtonModel.vue"
 
 export default defineComponent({
   name: "TimerHandler",
   emits: ['onTimerFinishes'],
-  components: { TimerViewer },
+  components: { TimerViewer, ButtonModel },
   data() {
     return {
       timeInSeconds: 0,
