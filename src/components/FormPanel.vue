@@ -17,6 +17,7 @@ import TimerHandler from "./TimerHandler.vue"
 
 export default defineComponent({
   name: "FormPanel",
+  emits: ['onSaveTask'],
   components: { TimerHandler },
   data() {
     return {
@@ -25,8 +26,10 @@ export default defineComponent({
   },
   methods: {
     finishTask(elapsedTime: number): void {
-      console.log('timer', elapsedTime)
-      console.log('description', this.description)
+      this.$emit('onSaveTask', {
+        timeInSeconds: elapsedTime,
+        description: this.description
+      })
       this.description = ''
     }
   }
