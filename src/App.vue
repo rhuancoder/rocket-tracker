@@ -1,9 +1,9 @@
 <template>
-  <main class="columns is-gapless is-multiline">
+  <main class="columns is-gapless is-multiline dark-mode">
     <div class="column is-one-quarter">
       <SideBar />
     </div>
-    <div class="column is-three-quarter">
+    <div class="column is-three-quarter content">
       <FormPanel @onSaveTask="saveTask" />
       <div class="tasks">
         <TaskModel v-for="(task, index) in tasks" :key="index" :task="task" />
@@ -52,5 +52,16 @@ export default defineComponent({
 <style>
 .tasks {
   padding: 1.25rem;
+}
+main {
+  --primary-background: #fff;
+  --primary-text: #000;
+}
+main.dark-mode {
+  --primary-background: #2b2d42;
+  --primary-text: #ddd;
+}
+.content{
+  background-color: var(--primary-background);
 }
 </style>
