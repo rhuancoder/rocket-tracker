@@ -6,7 +6,10 @@
     <div class="column is-three-quarter">
       <FormPanel @onSaveTask="saveTask" />
       <div class="tasks">
-        <TaskModel v-for="(task, index) in tasks" :key="index" :task="task"/>
+        <TaskModel v-for="(task, index) in tasks" :key="index" :task="task" />
+        <BoxModel v-if="isListEmpty">
+          No task has been created yet
+        </BoxModel>
       </div>
     </div>
   </main>
@@ -18,17 +21,24 @@ import SideBar from './components/SideBar.vue'
 import FormPanel from './components/FormPanel.vue'
 import TaskModel from './components/TaskModel.vue'
 import ITask from './interfaces/ITask'
+import BoxModel from './components/BoxModel.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
     SideBar,
     FormPanel,
-    TaskModel
+    TaskModel,
+    BoxModel
   },
   data() {
     return {
       tasks: [] as ITask[]
+    }
+  },
+  computed: {
+    isListEmpty() : boolean {
+        return this.tasks.length === 0
     }
   },
   methods: {
